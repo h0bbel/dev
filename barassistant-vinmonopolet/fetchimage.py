@@ -3,7 +3,12 @@
 
 import requests, sys
 
-item = int(sys.argv[1])
+if len(sys.argv) < 2:
+    print ("No argument provided, continuing with default")
+    item = "9133502"
+else:
+    item = int(sys.argv[1])
+
 
 url = f"https://bilder.vinmonopolet.no/cache/515x515-0/{item}-1.jpg"
 
@@ -14,8 +19,8 @@ r = requests.get(url, allow_redirects=True)
 # Generate local filename
 localfilename = f"{item}"+".jpg"
 
-print(localfilename)
 open(localfilename, 'wb').write(r.content)
+print(localfilename + " downloaded to current directory")
 
 
 
